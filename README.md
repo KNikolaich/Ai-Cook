@@ -58,9 +58,10 @@ Bash
 Проверь в браузере: http://IP_сервера:302
 Если работает → отлично. Ctrl+C для остановки.
 
-**Шаг 4. Делаем автозагрузку (самый надёжный и простой способ — systemd)**
+Шаг 4. Делаем автозагрузку (самый надёжный и простой способ — systemd)
 Создаём сервис:
-Bashsudo nano /etc/systemd/system/ai-cooker.service
+Bash
+sudo nano /etc/systemd/system/ai-cooker.service
 Вставь такой текст (замени пути, если нужно):
 ini[Unit]
 Description=Ai-Coocker Next.js приложение
@@ -71,7 +72,7 @@ Type=simple
 User=твой_пользователь          # например: ubuntu или твой логин, НЕ root
 WorkingDirectory=/home/твой_пользователь/Ai-Coocker
 Environment="NODE_ENV=production"
-Environment="PORT=3000"
+Environment="PORT=302"
 ExecStart=/usr/bin/npm run start
 Restart=always
 RestartSec=5
@@ -113,14 +114,16 @@ nginxserver {
         proxy_cache_bypass $http_upgrade;
     }
 }
-Активируем:
-Bashsudo ln -s /etc/nginx/sites-available/ai-cooker /etc/nginx/sites-enabled/
+*Активируем:*
+Bash
+sudo ln -s /etc/nginx/sites-available/ai-cooker /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
 Теперь сайт доступен по http://ваш_IP или домену.
 Вариант Б — сразу HTTPS (через 5 минут)
-Установи certbot:
-Bashsudo apt install -y certbot python3-certbot-nginx
+*Установи certbot:*
+Bash
+sudo apt install -y certbot python3-certbot-nginx
 sudo certbot --nginx -d ваш_домен.ru
 Альтернативы systemd (если не нравится)
 
@@ -134,7 +137,8 @@ pm2 startup   # добавит автозагрузку
 Docker — если хочешь контейнеризировать (но в репозитории Dockerfile нет, придётся написать простой)
 
 Кратко — что делать прямо сейчас
-Bashcd ~
+Bash
+cd ~
 git clone https://github.com/KNikolaich/Ai-Coocker.git
 cd Ai-Coocker
 nano .env.local   # ← добавь GEMINI_API_KEY
