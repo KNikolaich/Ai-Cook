@@ -1,0 +1,5 @@
+{
+  "name": "AI-Кулинар",
+  "description": "Умный помощник на вашей кухне. Анализируйте продукты по фото и получайте лучшие рецепты.",
+  "requestFramePermissions": ["camera", "microphone"]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "AI-Кулинар",
+  "short_name": "AI-Chef",
+  "description": "Умный помощник на вашей кухне",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#10b981",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1830/1830839.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1830/1830839.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
