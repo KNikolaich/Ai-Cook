@@ -20,7 +20,15 @@ interface AppState {
   isFavorite: (title: string) => boolean;
   setMessages: (messages: Message[] | ((prev: Message[]) => Message[])) => void;
   addMessage: (msg: Omit<Message, "id">) => void;
+  clearMessages: () => void;
 }
+
+const INITIAL_WELCOME_MESSAGE: Message = { 
+  id: "welcome",
+  role: "assistant", 
+  content: "Привет! Я твой персональный Шеф-повар. Сфотографируй продукты в холодильнике или просто напиши, что хочешь приготовить!",
+  type: "text"
+};
 
 export const useAppStore = create<AppState>()(
   persist(
@@ -32,14 +40,7 @@ export const useAppStore = create<AppState>()(
         autoRead: true,
       },
       favorites: [],
-      messages: [
-        { 
-          id: "welcome",
-          role: "assistant", 
-          content: "Привет! Я твой персональный Шеф-повар. Сфотографируй продукты в холодильнике или просто напиши, что хочешь приготовить!",
-          type: "text"
-        }
-      ],
+      messages: [INITIAL_WELCOME_MESSAGE],
       setPreferences: (prefs) =>
         set((state) => ({
           preferences: { ...state.preferences, ...prefs },
@@ -66,6 +67,9 @@ export const useAppStore = create<AppState>()(
         set((state) => ({
           messages: [...state.messages, { ...msg, id }]
         }));
+      },
+      clearMessages: () => {
+        set({ messages: [INITIAL_WELCOME_MESSAGE] });
       }
     }),
     {

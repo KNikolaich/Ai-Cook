@@ -53,7 +53,7 @@ export default function FavoritesPage() {
                         onClick={() => toggleFavorite(recipe)}
                         className="p-2 text-red-500 hover:bg-red-50 rounded-full transition-colors"
                       >
-                        <Trash2 className="w-5 h-5" />
+                        <Heart className="w-5 h-5 fill-current" />
                       </button>
                     </div>
                     

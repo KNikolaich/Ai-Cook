@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { 
   ChefHat, Clock, Flame, Utensils, Heart, Loader2, Wand2, 
   Send, Bot, User as UserIcon, Camera, Upload, Image as ImageIcon,
-  X, Sparkles, Mic
+  X, Sparkles, Mic, Eraser
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { cn } from "@/src/lib/utils";
@@ -32,7 +32,8 @@ export default function HomePage() {
     isFavorite, 
     setPreferences,
     messages,
-    addMessage
+    addMessage,
+    clearMessages
   } = useAppStore();
   
   const [input, setInput] = useState("");
@@ -192,6 +193,16 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+        <button
+          onClick={() => {
+            clearMessages();
+          }}
+          className="p-2.5 rounded-xl bg-secondary/50 hover:bg-red-500 hover:text-white transition-all border border-transparent hover:border-red-600 group shadow-sm"
+          title="Очистить чат"
+        >
+          <Eraser className="w-5 h-5 group-hover:scale-110 transition-transform" />
+        </button>
       </div>
 
       {/* Messages Area */}
