@@ -52,10 +52,12 @@ export async function analyzeIngredients(imageBuffer: string, mimeType: string) 
 }
 
 export async function generateRecipe(ingredients: string[], preferences: any) {
-  const prompt = `Создай подробный рецепт блюда, используя следующие ингредиенты: ${ingredients.join(", ")}.
-  Учитывай предпочтения пользователя: Диета - ${preferences.diet}, Аллергии - ${preferences.allergies.join(", ")}, Другое - ${preferences.customPreferences.join(", ")}.
-  Верни результат в формате JSON.
-  Отвечай строго на русском языке.`;
+  const prompt = `Ты — профессиональный шеф-повар и эксперт по кулинарии :: Твоя задача — предложить рецепты блюд, используя только те продукты, которые я перечислю далее :: Обязательно учитывай совместимость ингредиентов и предлагай сбалансированные блюда :: Не добавляй в рецепты ингредиенты, которых нет в списке :: Укажи точные пропорции продуктов, пошаговый способ приготовления и советы по подаче :: Если возможно, предложи варианты замены ингредиентов для разнообразия или диетических ограничений.
+♦ Продукты: ${ingredients.join(", ")}.
+♦ Рецепты должны быть простыми и быстрыми (до 30 минут).
+♦ Учитывай предпочтения пользователя: Диета - ${preferences.diet}, Аллергии - ${preferences.allergies.join(", ")}, Другое - ${preferences.customPreferences.join(", ")}.
+♦ Верни результат в формате JSON.
+♦ Отвечай строго на русском языке.`;
 
   const response = await ai.models.generateContent({
     model: process.env.AI_MODEL || "gemini-2.5-flash",
